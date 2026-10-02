@@ -9,7 +9,7 @@ import PokemonList from './PokemonList'
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
   name,
-  id: parseInt(url.match(/\/(\d+)\//)[1])
+  id: parseInt(url.match(/\/(\d+)\/)/)[1],
 })))
 
 const App = () => {
@@ -26,10 +26,14 @@ const App = () => {
   let next = null
   let previous = null
 
-  if (match && match.params) {
-    const pokemonId = pokemonList.find(({ name }) => name === match.params.name).id
-    previous = pokemonList.find(({ id }) => id === pokemonId - 1)
-    next = pokemonList.find(({ id }) => id === pokemonId + 1)
+  if (match && match.params && pokemonList) {
+    const matchedPokemon = pokemonList.find(({ name }) => name === match.params.name)
+
+    if (matchedPokemon) {
+      const pokemonId = matchedPokemon.id
+      previous = pokemonList.find(({ id }) => id === pokemonId - 1) ?? null
+      next = pokemonList.find(({ id }) => id === pokemonId + 1) ?? null
+    }
   }
 
   return (
