@@ -18,13 +18,16 @@ const PokemonPage = ({ previous, next }) => {
     return <ErrorMessage error={error} />
   }
 
-  const { type } = pokemon.types.find((type) => type.slot === 1)
-  const stats = pokemon.stats.map((stat) => ({
+  const types = pokemon.types || []
+  const primaryType = types.find((type) => type.slot === 1) || { type: { name: 'normal' } }
+  const { type } = primaryType
+  const stats = (pokemon.stats || []).map((stat) => ({
     name: formatName(stat.stat.name),
     value: stat.base_stat
   })).reverse()
-  const normalAbility = pokemon.abilities.find((ability) => !ability.is_hidden)
-  const hiddenAbility = pokemon.abilities.find((ability) => ability.is_hidden === true)
+  const abilities = pokemon.abilities || []
+  const normalAbility = abilities.find((ability) => !ability.is_hidden)
+  const hiddenAbility = abilities.find((ability) => ability.is_hidden === true)
 
   return (
     <>
@@ -50,8 +53,8 @@ const PokemonPage = ({ previous, next }) => {
             </table>
           </div>
           <div className="pokemon-abilities">
-            {normalAbility && <PokemonAbility abilityName={formatName(normalAbility.ability.name)} />}
-            {hiddenAbility && <PokemonAbility abilityName={formatName(hiddenAbility.ability.name)} />}
+            {normalAbility && <PokemonAbility abilityName={formatName(normalAbility.ability.name)} isHidden={false} />}
+            {hiddenAbility && <PokemonAbility abilityName={formatName(hiddenAbility.ability.name)} isHidden />}
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ import PokemonList from './PokemonList'
 const mapResults = (({ results }) => results.map(({ url, name }) => ({
   url,
   name,
-  id: parseInt(url.match(/\/(\d+)\/)/)[1],
+  id: parseInt(url.match(/\/(\d+)\//)[1]),
 })))
 
 const App = () => {
@@ -26,21 +26,21 @@ const App = () => {
   let next = null
   let previous = null
 
-  if (match && match.params && pokemonList) {
-    const matchedPokemon = pokemonList.find(({ name }) => name === match.params.name)
+  if (match && match.params && Array.isArray(pokemonList)) {
+    const currentPokemon = pokemonList.find(({ name }) => name === match.params.name)
 
-    if (matchedPokemon) {
-      const pokemonId = matchedPokemon.id
-      previous = pokemonList.find(({ id }) => id === pokemonId - 1) ?? null
-      next = pokemonList.find(({ id }) => id === pokemonId + 1) ?? null
+    if (currentPokemon) {
+      const pokemonId = currentPokemon.id
+      previous = pokemonList.find(({ id }) => id === pokemonId - 1) || null
+      next = pokemonList.find(({ id }) => id === pokemonId + 1) || null
     }
   }
 
   return (
     <Routes>
-      <Route exact path="/" element={<PokemonList pokemonList={pokemonList} />} />
+      <Route exact path="/" element={<PokemonList pokemonList={pokemonList || []} />} />
       <Route exact path="/pokemon/:name" element={
-        <PokemonPage pokemonList={pokemonList} previous={previous} next={next} />
+        <PokemonPage pokemonList={pokemonList || []} previous={previous} next={next} />
       } />
     </Routes>
   )
