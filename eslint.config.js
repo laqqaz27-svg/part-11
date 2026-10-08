@@ -13,7 +13,9 @@ module.exports = [
       'dist/**'
     ]
   },
+
   js.configs.recommended,
+
   {
     files: ['app.js'],
     languageOptions: {
@@ -35,6 +37,7 @@ module.exports = [
       'no-console': 0
     }
   },
+
   {
     files: ['src/**/*.{js,jsx}', 'test/**/*.{js,jsx}'],
     plugins: {
@@ -72,6 +75,18 @@ module.exports = [
       'arrow-spacing': ['error', { 'before': true, 'after': true }],
       'no-console': 'error',
       'react/prop-types': 0
+    }
+  },
+
+  {
+    files: ['jest.setup.js'],
+    languageOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'commonjs',
+      globals: {
+        ...globals.node,
+        ...globals.jest
+      }
     }
   }
 ]
