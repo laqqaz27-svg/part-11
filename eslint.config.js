@@ -88,5 +88,16 @@ module.exports = [
         ...globals.jest
       }
     }
+  },
+
+  {
+    files: ['playwright.config.js', 'e2e-tests/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'commonjs',
+      globals: {
+        ...globals.node
+      }
+    }
   }
 ]
