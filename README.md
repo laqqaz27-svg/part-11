@@ -24,3 +24,5 @@ Start by running `npm install` inside the project folder
 ## Continuous Integration
 
 GitHub Actions runs the lint, build, unit tests, and end-to-end tests when a pull request targets the `main` branch.
+
+Deployment to Fly.io runs only for pushes to the `main` branch.
