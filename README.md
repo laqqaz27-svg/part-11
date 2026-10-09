@@ -19,3 +19,8 @@ Start by running `npm install` inside the project folder
 `npm run build` to make a production build
 
 `npm run start-prod` to run your production build
+
+
+## Continuous Integration
+
+GitHub Actions runs the lint, build, unit tests, and end-to-end tests when a pull request targets the `main` branch.
