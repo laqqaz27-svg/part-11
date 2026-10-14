@@ -1,28 +1,26 @@
-# Full Stack open CI/CD
+# Full Stack Open CI/CD
 
-This repository is used for the CI/CD module of the Full Stack Open course
+This repository is used for the CI/CD module of the Full Stack Open course.
 
-## Deployed application
+## Exercise Repositories
 
-https://fs-pokedex-hidden-willow-4064.fly.dev/
+- **Deployed Pokedex:** https://part-11.onrender.com/
+- **Exercise 21–22 app repository (Blog List CI/CD):** https://github.com/laqqaz27-svg/blog-pipeline
+
+## Deployed Application
+
+https://part-11.onrender.com/
 
 ## Commands
 
-Start by running `npm install` inside the project folder
-
-`npm start` to run the webpack dev server
-
-`npm test` to run tests
-
-`npm run eslint` to run eslint
-
-`npm run build` to make a production build
-
-`npm run start-prod` to run your production build
-
+- `npm install` — install dependencies
+- `npm start` — start the development server
+- `npm test` — run tests
+- `npm run eslint` — run ESLint
+- `npm run build` — create a production build
+- `npm run start-prod` — start the production server
 
 ## Continuous Integration
 
-GitHub Actions runs the lint, build, unit tests, and end-to-end tests when a pull request targets the `main` branch.
+GitHub Actions runs the configured checks and build workflows. Deployment is hosted on Render.
 
-Deployment to Fly.io runs only for pushes to the `main` branch.
